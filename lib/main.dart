@@ -35,28 +35,32 @@ class _EmotionHomeState extends State<EmotionHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("今日の感情"),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("今日の感情を選択してください！"),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children:
-                ['😆', '😊', '😐', '😢'].map((emoji) {
-                  return IconButton(
-                    onPressed: () {
-                      setState(() => _selectedEmotion = emoji);
-                    },
-                    icon: Text(emoji, style: const TextStyle(fontSize: 32)),
-                  );
-                }).toList(),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/bg_emotion.png"),
+            fit: BoxFit.cover,
           ),
-          if (_selectedEmotion != null) Text("選択された感情: $_selectedEmotion"),
-        ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("今日の感情を選択してください！"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:
+                  ['😆', '😊', '😐', '😢'].map((emoji) {
+                    return IconButton(
+                      onPressed: () {
+                        setState(() => _selectedEmotion = emoji);
+                      },
+                      icon: Text(emoji, style: const TextStyle(fontSize: 32)),
+                    );
+                  }).toList(),
+            ),
+            if (_selectedEmotion != null) Text("選択された感情: $_selectedEmotion"),
+          ],
+        ),
       ),
     );
   }
