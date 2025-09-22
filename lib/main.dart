@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "screens/mood_input_screen.dart";
 
 void main() {
   runApp(const EmotionApp());
@@ -15,53 +16,7 @@ class EmotionApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const EmotionHome(title: '感情トラッカー🌳🪐🤍🎐🫧'),
-    );
-  }
-}
-
-class EmotionHome extends StatefulWidget {
-  const EmotionHome({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<EmotionHome> createState() => _EmotionHomeState();
-}
-
-class _EmotionHomeState extends State<EmotionHome> {
-  String? _selectedEmotion;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/bg_emotion.png"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("今日の感情を選択してください！"),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children:
-                  ['😆', '😊', '😐', '😢'].map((emoji) {
-                    return IconButton(
-                      onPressed: () {
-                        setState(() => _selectedEmotion = emoji);
-                      },
-                      icon: Text(emoji, style: const TextStyle(fontSize: 32)),
-                    );
-                  }).toList(),
-            ),
-            if (_selectedEmotion != null) Text("選択された感情: $_selectedEmotion"),
-          ],
-        ),
-      ),
+      home: const EmotionHome(),
     );
   }
 }
